@@ -1,7 +1,9 @@
 import math
-from utils.boxer_detector import extract_boxers_from_persons, extract_red_boxers_from_persons, extract_blue_boxers_from_persons, extract_boxers_on_one_box_from_persons
 import cv2
+import json
+import numpy as np
 from pathlib import Path
+from utils.boxer_detector import extract_boxers_from_persons, extract_red_boxers_from_persons, extract_blue_boxers_from_persons, extract_boxers_on_one_box_from_persons
 
 
 def person_is_in_the_ring(person_box, image_height):
@@ -117,3 +119,40 @@ def get_coordinates_from_zipped_results(zipped_results):
 
 def create_dir_if_not_exist(dir_path):
     Path(dir_path).mkdir(parents=True, exist_ok=True)
+
+def get_frame_numbers_with_action(dir_path: str) -> list:
+    tracks = read_json(f'{dir_path}/annotations.json')[0]['tracks']
+    annotations_mean_action = ['Głowa lewą ręką', 'Głowa prawą ręką', 'Korpus lewą ręką', 'Korpus prawą ręką', 'Blok lewą ręką', 'Blok prawą ręką']
+    frame_numbers_with_action = []
+
+    for track in tracks:
+        for shape in track['shapes']:
+            if not shape['outside'] and track['label'] in annotations_mean_action:
+                frame_numbers_with_action.append(shape['frame'])
+
+    return frame_numbers_with_action
+
+
+def read_json(file_path: str):
+    f = open(file_path)
+    data = json.load(f)
+    f.close()
+    return data
+
+
+def crop(image, is_rgb=False):
+    if is_rgb:
+        y_nonzero, x_nonzero, _ = np.nonzero(image)
+    else:
+        y_nonzero, x_nonzero = np.nonzero(image)
+    return image[np.min(y_nonzero):np.max(y_nonzero), np.min(x_nonzero):np.max(x_nonzero)]
+
+
+def get_coordinates_of_rectangle_with_objects(image):
+    y_nonzero, x_nonzero = np.nonzero(image)
+    y_min = np.min(y_nonzero)
+    y_max = np.max(y_nonzero)
+    x_min = np.min(x_nonzero)
+    x_max = np.max(x_nonzero)
+
+    return y_min, y_max, x_min, x_max
