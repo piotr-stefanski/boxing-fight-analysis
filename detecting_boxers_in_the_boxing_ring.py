@@ -57,4 +57,4 @@ def main(video_path, draw_on_image=False) -> None:
     cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    main(video_path='./data/videos/GH079681.MP4', draw_on_image=True)
+    main(video_path='./data/videos/GH059681.MP4', draw_on_image=True)

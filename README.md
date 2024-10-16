@@ -35,7 +35,7 @@ TODO: some text about this stage
 
 ## Detecting boxers in the boxing ring
 ### Requirements
-1. Download some video to test e.g. `kam4/GH079681.MP4` from [published dataset](TODO) and save into `./data/videos`
+1. Download some video to test e.g. `kam4/GH059681.MP4` from [published dataset](TODO) and save into `./data/videos`
 2. Download pretrained weights to network (tested on ssd mobilenet v3 trained on coco dataset, files available on [Google Drive](https://drive.google.com/drive/folders/1TB3rL7pTCSQhcGYloc-jTIk1l_GvwEeE?usp=sharing)) saved into `./data/models`
 
 To reproduce run `python detecting_boxers_in_the_boxing_ring.py`
