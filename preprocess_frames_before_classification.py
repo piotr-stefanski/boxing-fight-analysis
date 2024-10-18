@@ -47,9 +47,9 @@ def create_necessary_directories_to_store_preprocessed_frames(approach_name: str
     create_dir_if_not_exist(f'./data/annotated_images/segmented_frames/{approach_name}/punch')
     create_dir_if_not_exist(f'./data/annotated_images/segmented_frames/{approach_name}/not_punch')
 
-def process_video(dir_path: str):
+def process_video(dir_path: str, output_frame_size=(80, 80)):
     video_name = f'{dir_path.split('/')[-1].split('_')[2].upper()}'
-    video = VideoReader(f'{dir_path}/data/{video_name}.mp4', ctx=cpu(0))#, width=256, height=256
+    video = VideoReader(f'{dir_path}/data/{video_name}.mp4', ctx=cpu(0), width=output_frame_size[0], height=output_frame_size[1])
     annotation_reader = AnnotationReader(dir_path)
     segmentation_processor = get_segmentation_processor(dir_path)
 
