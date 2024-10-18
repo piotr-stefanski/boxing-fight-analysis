@@ -2,7 +2,7 @@
 This repository contains the source code for experimental research conducted on the analysis of boxing fight recordings. 
 The research focuses on video data, using the publicly available datasets:
 1. [Olympic Boxing Punch Classification Video Dataset](https://www.kaggle.com/datasets/piotrstefaskiue/olympic-boxing-punch-classification-video-dataset) on Kaggle - labelled dataset by boxing referees for supervised learning.
-2. [Olympic Boxing Video Dataset](TODO) on Kaggle - recorded and anonymized videos of the competition.
+2. [Olympic Boxing Video Dataset](https://www.kaggle.com/datasets/piotrstefaskiue/olympic-boxing-video-dataset-unlabeled) on Kaggle - recorded and anonymized videos of the competition.
 
 The primary goal of this repository is to ensure the reproducibility of the experiments and findings presented in published papers by the authors.
 By providing access to the code and methodologies used, this repository aims to assist researchers, data scientists, and sports analysts in replicating the results, further enhancing the study of boxing video analysis.
@@ -21,7 +21,7 @@ Follow bellow instruction to obtain results published in the paper[1] like in th
 ![Boxer detecting example](./examples/detect_boxers.jpg)
 
 ### Requirements
-1. Download some video to test e.g. `kam4/GH059681.MP4` from [published dataset](TODO) and save into `./data/videos`
+1. Download some video to test e.g. `kam4/GH059681.MP4` from [published dataset](https://www.kaggle.com/datasets/piotrstefaskiue/olympic-boxing-video-dataset-unlabeled) and save into `./data/videos`
 2. Download pretrained weights to network (tested on ssd mobilenet v3 trained on coco dataset, files available on [Google Drive](https://drive.google.com/drive/folders/1TB3rL7pTCSQhcGYloc-jTIk1l_GvwEeE?usp=sharing)) saved into `./data/models`
 
 To reproduce run `python detecting_boxers_in_the_boxing_ring.py`
